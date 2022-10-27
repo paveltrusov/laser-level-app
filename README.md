@@ -7,7 +7,7 @@ A simple iOS app to simulate a laser level using built-in camera and gyroscope.
 ## Demo
 https://youtu.be/aB03EtQ5zsU
 
-![Screenshot](screenshot.jpg)
+![Screenshot](screenshot.jpeg)
 
 
 ## Usage
