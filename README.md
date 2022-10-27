@@ -13,7 +13,7 @@ https://youtu.be/aB03EtQ5zsU
 ## Usage
 * Download folder
 * Open .xcodeproj file in Xcode
-* Run on your device (no simulator supported !)
+* Run on your device (simulator is not supported !)
 * Drag to move lines over the X or Y axis accordingly
 * Tap any place to reset lines at center
 
