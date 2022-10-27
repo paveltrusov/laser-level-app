@@ -32,5 +32,6 @@ extension ViewController {
         /// Tap gesture to reset lines position to the center
         let tapGesture  = UITapGestureRecognizer(target: self, action: #selector(ViewController.wasTapped(_:)))
         view.addGestureRecognizer(tapGesture)
+        
     }
 }

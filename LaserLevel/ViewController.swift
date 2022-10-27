@@ -29,12 +29,10 @@ class ViewController: UIViewController {
     /// XY values of lines shift caused by user gestures
     var userShift = UserShift()
 
-    
+    // Force portrait mode
     override var shouldAutorotate: Bool {
         return false
     }
-    
-
     override public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
@@ -42,12 +40,14 @@ class ViewController: UIViewController {
         return .portrait
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateOrientation()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCaptureSession()
-        detectOrientation()
-
         startDrawing()
     }
 }
