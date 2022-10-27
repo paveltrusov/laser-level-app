@@ -5,8 +5,9 @@ import AVFoundation
 
 extension ViewController {
     func configureCaptureSession() {
+        //MARK: - Capture session
         captureSession.sessionPreset = AVCaptureSession.Preset.photo
-        currentDevice = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInDualCamera], mediaType: AVMediaType.video, position: .back).devices[0]
+        currentDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .back)
            
         guard let captureDeviceInput = try? AVCaptureDeviceInput(device: currentDevice) else {
             return
@@ -23,9 +24,12 @@ extension ViewController {
 
         view.layer.addSublayer(previewLayer!)
         
+        //MARK: - Gestures
+        /// Pan gesture that allows user to move lines on the screen
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(ViewController.wasDragged(_:)))
         view.addGestureRecognizer(panGesture)
         
+        /// Tap gesture to reset lines position to the center
         let tapGesture  = UITapGestureRecognizer(target: self, action: #selector(ViewController.wasTapped(_:)))
         view.addGestureRecognizer(tapGesture)
     }

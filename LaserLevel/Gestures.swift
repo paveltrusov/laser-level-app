@@ -3,44 +3,32 @@
 import UIKit
 import CoreGraphics
 
-var shiftX = CGFloat(0)
-var shiftY = CGFloat(0)
-
-var cumulativeShiftX = CGFloat(0)
-var cumulativeShiftY = CGFloat(0)
-
-
-var startX = CGFloat(0)
-var startY = CGFloat(0)
-
-
 extension ViewController {
-    
     /// Handle pan gesture to shift lines
     /// - Parameter pan: Pan gesture recognizer
     @objc func wasDragged(_ pan: UIPanGestureRecognizer) {
         let location = pan.location(in: view)
         
         if pan.state == .began {
-            startX = location.x
-            startY = location.y
+            userShift.panStartX = location.x
+            userShift.panStartY = location.y
             
         } else if pan.state == .changed {
-            shiftX = location.x - startX
-            shiftY = location.y - startY
+            userShift.shiftX = location.x - userShift.panStartX
+            userShift.shiftY = location.y - userShift.panStartY
             
         } else if pan.state == .ended {
-            cumulativeShiftX += shiftX
-            cumulativeShiftY += shiftY
-            shiftX = 0
-            shiftY = 0
+            userShift.cumulativeShiftX += userShift.shiftX
+            userShift.cumulativeShiftY += userShift.shiftY
+            userShift.shiftX = 0
+            userShift.shiftY = 0
         }
     }
     
-    /// Handle tap gesture to reset lines shift
+    /// Handle tap gesture to reset lines shifting
     /// - Parameter pan: Tap gesture recognizer
     @objc func wasTapped(_ tap: UITapGestureRecognizer) {
-        cumulativeShiftX = 0
-        cumulativeShiftY = 0
+        userShift.cumulativeShiftX = 0
+        userShift.cumulativeShiftY = 0
     }
 }

@@ -2,20 +2,17 @@
 
 import CoreMotion
 
-let manager = CMMotionManager()
-let refreshRate = Double (1 / 10)  // 10 Hz
-
-var x = 0.0
-var y = 0.0
-
 extension ViewController {
-    func getGravityData() -> Void {
+    
+    ///  Updates data from built-in device  gyroscope
+    func updateGravityData() -> Void {
         manager.deviceMotionUpdateInterval = refreshRate
         manager.startDeviceMotionUpdates()
         
         if let data = manager.deviceMotion {
-            x = data.gravity.x
-            y = data.gravity.y
+            gyroData.x = data.gravity.x
+            gyroData.y = data.gravity.y
+            // Z axis is not used in the app
         }
     }
 }
